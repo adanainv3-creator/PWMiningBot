@@ -26,6 +26,7 @@ class BotService : Service(), PWProtocol.Listener {
 
     lateinit var protocol: PWProtocol
     internal lateinit var auth: AuthManager
+    var interceptor: JwtInterceptor? = null
     private lateinit var prefs: SharedPreferences
     private var netherAI: NetherAI? = null
     var running = false
@@ -67,12 +68,33 @@ class BotService : Service(), PWProtocol.Listener {
     override fun onDestroy() {
         super.onDestroy()
         stopBot()
+        stopInterceptor()
         instance = null
     }
 
     // ── BOT CONTROL ──────────────────────────────────────────────────────────
 
-    fun startBot() {
+    fun startInterceptor() {
+        if (interceptor != null) return
+        interceptor = JwtInterceptor(prefs,
+            onCaptured = { jwt, _, _ ->
+                protocol.jwt = jwt
+                log("JWT auto-captured, starting bot...")
+                if (!running) startBot()
+                else protocol.updateToken(jwt)
+            },
+            onStatus = { msg -> log(msg) }
+        )
+        interceptor!!.start()
+        log("JWT interceptor started — open Pixel Worlds to capture token")
+    }
+
+    fun stopInterceptor() {
+        interceptor?.stop()
+        interceptor = null
+    }
+
+        fun startBot() {
         if (running) return
         running = true
         sessionStart = System.currentTimeMillis()

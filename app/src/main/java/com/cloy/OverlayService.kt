@@ -170,6 +170,21 @@ class OverlayService : Service() {
         ll.addView(swNether); ll.addView(swMine); ll.addView(swAfk); ll.addView(swCollect)
         ll.addView(divider())
 
+        // ── AUTO CAPTURE ──
+        ll.addView(section("📡 Auto JWT Capture"))
+        val captureDesc = TextView(this).apply {
+            text = "Open Pixel Worlds after pressing this. JWT will be captured automatically."
+            setTextColor(0xFF888888.toInt()); textSize = 10f
+            setPadding(0,0,0,dp(4))
+        }
+        ll.addView(captureDesc)
+        ll.addView(btn("📡 Start Capture → Open Game") {
+            BotService.instance?.startInterceptor()
+            openGame()
+            toast("Open Pixel Worlds and login normally!")
+        })
+        ll.addView(divider())
+
         // ── QUICK ACTIONS ──
         ll.addView(section("🚀 Quick Actions"))
         ll.addView(btn("🔥 Enter Nether Now") { BotService.instance?.joinNether() })
