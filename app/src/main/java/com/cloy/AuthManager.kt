@@ -109,7 +109,7 @@ class AuthManager(private val prefs: SharedPreferences) {
         refreshTask = scheduler.scheduleAtFixedRate({
             doLogin(object : AuthListener {
                 override fun onSuccess(coID: String, jwt: String, nick: String) = listener.onRefreshed(jwt)
-                override fun onFailed(e: String) = Log.e(TAG, "Refresh failed: $e")
+                override fun onFailed(e: String) { Log.e(TAG, "Refresh failed: $e") }
                 override fun onRefreshed(jwt: String) {}
             })
         }, REFRESH_MS, REFRESH_MS, TimeUnit.MILLISECONDS)

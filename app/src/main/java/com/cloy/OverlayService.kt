@@ -47,10 +47,10 @@ class OverlayService : Service() {
     private var etEmail: EditText? = null
     private var etPass: EditText? = null
     private var etJwt: EditText? = null
-    private var swNether: Switch? = null
-    private var swMine: Switch? = null
-    private var swAfk: Switch? = null
-    private var swCollect: Switch? = null
+    private var swNether: LinearLayout? = null
+    private var swMine: LinearLayout? = null
+    private var swAfk: LinearLayout? = null
+    private var swCollect: LinearLayout? = null
 
     private val logLines = ArrayDeque<String>(8)
     private var initX = 0; private var initY = 0
@@ -218,7 +218,7 @@ class OverlayService : Service() {
         wm.updateViewLayout(root, params)
 
         prefs.edit().putString("email", email).putString("password", pass).apply()
-        BotService.instance?.also { it.auth.saveCredentials(email, pass) }
+        BotService.instance?.auth?.saveCredentials(email, pass)
         tvCredStatus?.text = "✅ $email"; tvCredStatus?.setTextColor(0xFF00ff88.toInt())
 
         params.flags = params.flags or WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE

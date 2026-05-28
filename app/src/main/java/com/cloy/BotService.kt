@@ -25,7 +25,7 @@ class BotService : Service(), PWProtocol.Listener {
     }
 
     lateinit var protocol: PWProtocol
-    private lateinit var auth: AuthManager
+    internal lateinit var auth: AuthManager
     private lateinit var prefs: SharedPreferences
     private var netherAI: NetherAI? = null
     var running = false
@@ -216,6 +216,4 @@ class BotService : Service(), PWProtocol.Listener {
         statusListener?.invoke(msg)
     }
 
-    @Suppress("unused")
-    private fun Thread.Companion.sleep(ms: Long) = Thread.sleep(ms)
 }
