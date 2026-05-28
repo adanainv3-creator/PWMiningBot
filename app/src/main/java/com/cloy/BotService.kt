@@ -81,7 +81,7 @@ class BotService : Service(), PWProtocol.Listener {
                 protocol.jwt = jwt
                 log("JWT auto-captured, starting bot...")
                 if (!running) startBot()
-                else protocol.updateToken(jwt)
+                else protocol.jwt = jwt
             },
             onStatus = { msg -> log(msg) }
         )
