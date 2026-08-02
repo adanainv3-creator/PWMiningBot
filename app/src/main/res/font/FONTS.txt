@@ -1,0 +1,14 @@
+Place the following font files here before building:
+
+inter_regular.ttf
+inter_medium.ttf
+inter_semibold.ttf
+inter_bold.ttf
+inter_extrabold.ttf
+space_grotesk_regular.ttf
+space_grotesk_medium.ttf
+space_grotesk_semibold.ttf
+space_grotesk_bold.ttf
+
+Download Inter from https://fonts.google.com/specimen/Inter
+Download Space Grotesk from https://fonts.google.com/specimen/Space+Grotesk

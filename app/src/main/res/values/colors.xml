@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="deep_black">#FF080A0E</color>
+    <color name="surface_black">#FF0D1018</color>
+    <color name="neon_green">#FF00FF87</color>
+    <color name="crimson_red">#FFFF2D55</color>
+    <color name="text_primary">#FFF0F2F8</color>
+    <color name="text_secondary">#FF8892A8</color>
+</resources>
